@@ -11,7 +11,6 @@ form.addEventListener("submit", e => {
   
   const listItems = list.querySelectorAll(".second-body .city");
 const listItemsArray = Array.from(listItems);
-console.log(listItemsArray);
  
 if (listItemsArray.length > 0) {
   //2
@@ -51,7 +50,7 @@ const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid
   .then(data => {
     // do stuff with the data
     const { main, name, sys, weather } = data;
-    console.log(data)
+    console.log(main)
   const icon = `https://openweathermap.org/img/wn/${
  weather[0]["icon"]
 }@2x.png`;
@@ -77,6 +76,11 @@ list.appendChild(li);
 form.reset();
 input.focus();
   })
+  .catch(error => {
+    const display = document.querySelector(".msg");
+    display.style.color = ("red")
+display.innerHTML = "Error network!!";
+  });
   
 });
 
